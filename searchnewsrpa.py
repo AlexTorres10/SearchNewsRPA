@@ -131,16 +131,32 @@ class NewsScraper:
 
 
     def save_to_excel(self, news_data):
+        """Save the scraped news data to an Excel file using RPA.Excel.Files."""
+        # Ensure the output folder exists
         os.makedirs(self.output_folder, exist_ok=True)
 
-        # Convert the news data to a pandas DataFrame
-        df = pd.DataFrame(news_data)
+        # Create a new workbook
+        self.excel.create_workbook(self.excel_file)
 
-        # Define the file path for the Excel file
-        excel_file_path = os.path.join(self.output_folder, "news_data.xlsx")
+        # Add headers to the first row
+        headers = ["Title", "Date", "Description", "Image URL", "Search Phrase Count", "Contains Money"]
+        self.excel.append_rows_to_worksheet([headers], header=True)
 
-        # Save the DataFrame to an Excel file, making sure the header is on the first row
-        df.to_excel(excel_file_path, index=False)
+        # Add the news data rows
+        for data in news_data:
+            row = [
+                data["title"],
+                data["date"],
+                data["description"],
+                data["image_url"],
+                data["search_phrase_count"],
+                data["contains_money"]
+            ]
+            self.excel.append_rows_to_worksheet([row], header=False)
+
+        # Save and close the workbook
+        self.excel.save_workbook()
+        self.excel.close_workbook()
 
 
     def contains_money(self, text):
