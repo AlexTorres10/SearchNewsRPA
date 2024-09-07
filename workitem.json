@@ -1,7 +1,5 @@
 {
-    "variables": {
-        "search_phrase": "Jesus",
-        "category": "Religion",
-        "months": 2
-    }
+    "search_phrase": "Jesus",
+    "category": "Religion",
+    "months": 2
 }

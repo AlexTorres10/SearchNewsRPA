@@ -24,15 +24,10 @@ class NewsScraper:
 
     def load_work_items(self):
         """Load the work items and extract the parameters."""
-        # with open("workitem.json", "r") as file:
-        #     data = json.load(file)
-        #     self.search_phrase = data["variables"]["search_phrase"]
-        #     self.category = data["variables"]["category"]
-        #     self.months = data["variables"]["months"]
 
-        #     self.output_folder = "output"
-        #     self.excel_file = os.path.join(self.output_folder, "news_data.xlsx")
-        #     os.makedirs(self.output_folder, exist_ok=True)
+        self.output_folder = "output"
+        self.excel_file = os.path.join(self.output_folder, "news_data.xlsx")
+        os.makedirs(self.output_folder, exist_ok=True)
         self.work_items.get_input_work_item()
 
         # Get the parameters from the work item payload
