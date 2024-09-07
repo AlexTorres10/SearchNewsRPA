@@ -178,9 +178,6 @@ class NewsScraper:
         news_data = self.scrape_news()
         self.save_to_excel(news_data)
 
-        # Complete the work item
-        self.work_items.complete_work_item()
-
 
     def close(self):
         """Close the browser."""
