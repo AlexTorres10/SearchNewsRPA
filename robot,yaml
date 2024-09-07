@@ -1,0 +1,8 @@
+tasks:
+  Run scraper:
+    command:
+      - python3
+      - -m
+      - searchnewsrpa
+
+condaConfigFile: conda.yaml
