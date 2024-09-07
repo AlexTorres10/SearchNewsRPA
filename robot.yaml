@@ -1,7 +1,7 @@
 tasks:
   Run scraper:
     command:
-      - python3
+      - python
       - -m
       - searchnewsrpa
 
