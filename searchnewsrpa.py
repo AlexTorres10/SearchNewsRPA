@@ -5,6 +5,7 @@ import re
 import json, os
 from datetime import datetime, timedelta
 import pandas as pd
+from robocorp.tasks import task
 
 class NewsScraper:
     def __init__(self):
@@ -163,8 +164,10 @@ class NewsScraper:
         """Close the browser."""
         self.browser.close_all_browsers()
 
-scraper = NewsScraper()
-try:
-    scraper.run()
-finally:
-    scraper.close()
+@task
+def scraper():
+    scraper = NewsScraper()
+    try:
+        scraper.run()
+    finally:
+        scraper.close()
