@@ -8,3 +8,5 @@ dependencies:
     - rpaframework==28.6.2        # https://rpaframework.org/releasenotes.html
     - robocorp==2.1.0             # https://pypi.org/project/robocorp
     - robocorp-browser==2.3.3     # https://pypi.org/project/robocorp-browser
+    - pandas
+    - openpyxl
