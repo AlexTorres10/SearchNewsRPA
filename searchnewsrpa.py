@@ -1,7 +1,6 @@
 from RPA.Browser.Selenium import Selenium
 from RPA.Excel.Files import Files
 from RPA.Robocorp.WorkItems import WorkItems
-import time
 import re
 import json, os
 from datetime import datetime, timedelta
@@ -45,7 +44,6 @@ class NewsScraper:
         """Open the Gothamist website with the search query."""
         url = f"https://gothamist.com/search?q={self.search_phrase}"
         self.browser.open_available_browser(url)
-        time.sleep(3)
 
 
     def scrape_news(self):
@@ -150,24 +148,12 @@ class NewsScraper:
         return bool(re.search(pattern, text))
 
 
-    def download_images(self, news_data):
-        """Download images from the scraped news data."""
-        for data in news_data:
-            image_url = data["image_url"]
-            if image_url:
-                try:
-                    image_path = os.path.join(self.output_folder, f"{data['title']}.jpg")
-                except Exception as e:
-                    print(f"Failed to download image from {image_url}: {e}")
-
-
     def run(self):
         """Run the scraper."""
         self.load_work_items()
         self.open_website()
         news_data = self.scrape_news()
         self.save_to_excel(news_data)
-        self.download_images(news_data)
 
         # Complete the work item
         self.work_items.complete_work_item()
