@@ -105,8 +105,11 @@ class NewsScraper:
 
         # Wait until the date element is visible
         try:
-            date_selector = f'//*[@id="__nuxt"]/div/div/main/div[2]/section[1]/div/div[2]/div[2]/div[2]/div/div[1]/div[2]/div[2]/p'
-            self.browser.wait_until_element_is_visible(date_selector, timeout=60)
+            date_selector = f'/html/body/div[1]/div/div/main/div[2]/section[1]/div/div[2]/div[1]/div[1]/div[1]/div[2]/div[2]/p'
+            self.browser.wait_until_element_is_visible(date_selector, timeout=30)
+
+            date_text = self.browser.get_text(date_selector)  # "Published Dec 6, 2023"
+            
         except:
             page_source = self.browser.get_source()
             # Regular expression to find "Published [Month] [Day], [Year]"
@@ -116,8 +119,6 @@ class NewsScraper:
             else:
                 print("Date not found")
                 return None
-
-        date_text = self.browser.get_text(date_selector)  # "Published Dec 6, 2023"
         date_text = date_text.replace("Published ", "")  # Remove "Published" from the string
 
         # Convert to datetime object
