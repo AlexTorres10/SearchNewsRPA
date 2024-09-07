@@ -36,9 +36,9 @@ class NewsScraper:
         self.work_items.get_input_work_item()
 
         # Get the parameters from the work item payload
-        self.search_phrase = self.work_items.get_variable("search_phrase")
-        self.category = self.work_items.get_variable("category")
-        self.months = self.work_items.get_variable("months")
+        self.search_phrase = self.work_items.get_work_item_variable("search_phrase", default=None)
+        self.category = self.work_items.get_work_item_variable("category", default=None)
+        self.months = self.work_items.get_work_item_variable("months", default=1)
 
 
     def open_website(self):
