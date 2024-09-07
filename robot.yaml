@@ -1,8 +1,5 @@
 tasks:
   Run scraper:
-    command:
-      - python
-      - -m
-      - searchnewsrpa
+    command: python -m robocorp.tasks run tasks.py
 
 condaConfigFile: conda.yaml
