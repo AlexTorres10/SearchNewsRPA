@@ -31,8 +31,8 @@ class NewsScraper:
         self.work_items.get_input_work_item()
 
         # Get the parameters from the work item payload
-        self.search_phrase = self.work_items.get_work_item_variable("search_phrase", default=None)
-        self.category = self.work_items.get_work_item_variable("category", default=None)
+        self.search_phrase = self.work_items.get_work_item_variable("search_phrase", default='')
+        self.category = self.work_items.get_work_item_variable("category", default='')
         self.months = self.work_items.get_work_item_variable("months", default=1)
 
 
@@ -174,9 +174,10 @@ class NewsScraper:
     def run(self):
         """Run the scraper."""
         self.load_work_items()
-        self.open_website()
-        news_data = self.scrape_news()
-        self.save_to_excel(news_data)
+        if self.search_phrase != '' or self.months < 0:
+            self.open_website()
+            news_data = self.scrape_news()
+            self.save_to_excel(news_data)
 
 
     def close(self):
